@@ -1,7 +1,6 @@
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord.js';
 import 'dotenv/config';
-import * as nodelua from 'node-lua';
 
 const commands = [
 	{
