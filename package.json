@@ -7,6 +7,10 @@
 	"author": "r6nted",
 	"license": "unlicense",
 	"private": false,
+	"scripts": {
+		"start": "yarn install && ts-node index.ts",
+		"dev": "ts-node utils/server/index.ts"
+	},
 	"nodemonConfig": {
 		"ignore": [
 			"test/*",

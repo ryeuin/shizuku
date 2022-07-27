@@ -9,27 +9,29 @@ const commands = [
 	},
 ];
 
-// @ts-ignore
-const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
+module.exports = (client: any) => {
+	// @ts-ignore
+	const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
-(async () => {
-	try {
-		console.log('Started refreshing application (/) commands.');
+	(async () => {
+		try {
+			console.log('Started refreshing application (/) commands.');
 
-		await rest.put(
-			Routes.applicationGuildCommands(
-				// @ts-ignore
-				process.env.CLIENTID,
-				// @ts-ignore
-				process.env.GUILDID
-			),
-			{
-				body: commands,
-			}
-		);
+			await rest.put(
+				Routes.applicationGuildCommands(
+					// @ts-ignore
+					process.env.CLIENTID,
+					// @ts-ignore
+					process.env.GUILDID
+				),
+				{
+					body: client.commands.toJSON(),
+				}
+			);
 
-		console.log('Successfully reloaded application (/) commands.');
-	} catch (error) {
-		console.error(error);
-	}
-})();
+			console.log('Successfully reloaded application (/) commands.');
+		} catch (error) {
+			console.error(error);
+		}
+	})();
+};
